@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.name                   = 'sensu-plugins-druid'
   s.summary                = 'Druid monitoring plugin'
   s.description            = 'Sensu plugin to monitor Druid DB'
-  s.authors                = ["Yurii Rochniak"]
+  s.authors                = ['Yurii Rochniak']
   s.email                  = 'yrochnyak@gmail.com'
   s.date                   = Date.today.to_s
   s.require_paths          = ['lib']
@@ -36,5 +36,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop',                   '~> 0.40.0'
   s.add_development_dependency 'rspec',                     '~> 3.4'
   s.add_development_dependency 'yard',                      '~> 0.8'
-
 end

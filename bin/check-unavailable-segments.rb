@@ -6,9 +6,11 @@
 # DESCRIPTION:
 #   Check if Druid has unavailable segments.
 #
-#   Unavailable segments could indicate an issue with any Historical node or Coordinator.
+#   Unavailable segments could indicate an issue with any Historical node
+#   or Coordinator.
 #   This check requests "loadstatus" from Coordinator API.
-#   Druid responds with JSON, which contain information regarding segments to load for each datasource.
+#   Druid responds with JSON, which contain information regarding segments
+#   to load for each datasource.
 #
 #   Druid documentation:
 #   http://druid.io/docs/latest/design/coordinator.html
