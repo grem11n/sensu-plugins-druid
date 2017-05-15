@@ -1,4 +1,4 @@
-Gem::Specifications.new do |s|
+Gem::Specification.new do |s|
     s.name        = 'sensu-plugins-druid'
     s.version     = '0.0.1'
     s.date        = '2017-05-13'
