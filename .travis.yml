@@ -16,8 +16,8 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake default
-- gem build sensu-plugins-zookeeper.gemspec
-- gem install sensu-plugins-zookeeper-*.gem
+- gem build sensu-plugins-druid.gemspec
+- gem install sensu-plugins-druid-*.gem
 deploy:
   provider: rubygems
   api_key:
