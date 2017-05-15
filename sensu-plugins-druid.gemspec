@@ -1,11 +1,32 @@
 Gem::Specification.new do |s|
-    s.name        = 'sensu-plugins-druid'
-    s.version     = '0.0.1'
-    s.date        = '2017-05-13'
-    s.summary     = 'Druid monitoring plugin'
-    s.description = 'Sensu plugin to monitor Druid DB'
-    s.authors     = ["Yurii Rochniak"]
-    s.email       = 'yrochnyak@gmail.com'
-    s.files       = ["lib/sensu-druid-plugins.rb"]
-    s.license     = 'MIT'
+  s.name                   = 'sensu-plugins-druid'
+  s.summary                = 'Druid monitoring plugin'
+  s.description            = 'Sensu plugin to monitor Druid DB'
+  s.authors                = ["Yurii Rochniak"]
+  s.email                  = 'yrochnyak@gmail.com'
+  s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
+  s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
+  s.license                = 'MIT'
+  s.metadata               = { 'maintainer'         => 'Yurii Rochniak',
+                               'development_status' => 'active',
+                               'production_status'  => 'unstable - testing recommended' }
+  s.platform               = Gem::Platform::RUBY
+  s.require_paths          = ['lib']
+  s.required_ruby_version  = '>= 2.0.0'
+  s.test_files             = s.files.grep(%r{^(test|spec|features)/})
+  s.version                = SensuPluginsDruid::Version::VER_STRING
+
+  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'json',         '~> 1.9'
+
+  s.add_development_dependency 'bundler',                   '~> 1.7'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
+  s.add_development_dependency 'github-markup',             '~> 1.3'
+  s.add_development_dependency 'pry',                       '~> 0.10'
+  s.add_development_dependency 'rake',                      '~> 10.5'
+  s.add_development_dependency 'redcarpet',                 '~> 3.2'
+  s.add_development_dependency 'rubocop',                   '~> 0.40.0'
+  s.add_development_dependency 'rspec',                     '~> 3.4'
+  s.add_development_dependency 'yard',                      '~> 0.8'
+
 end
