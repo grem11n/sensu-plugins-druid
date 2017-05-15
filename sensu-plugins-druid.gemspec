@@ -4,6 +4,8 @@ Gem::Specification.new do |s|
   s.description            = 'Sensu plugin to monitor Druid DB'
   s.authors                = ["Yurii Rochniak"]
   s.email                  = 'yrochnyak@gmail.com'
+  s.date                   = Date.today.to_s
+  s.require_paths          = ['lib']
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
   s.license                = 'MIT'
@@ -11,7 +13,6 @@ Gem::Specification.new do |s|
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended' }
   s.platform               = Gem::Platform::RUBY
-  s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 2.0.0'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsDruid::Version::VER_STRING
