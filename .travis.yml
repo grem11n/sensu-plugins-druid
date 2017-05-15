@@ -1,0 +1,28 @@
+language: ruby
+cache:
+- bundler
+install:
+- bundle install
+rvm:
+- 2.0
+- 2.1
+- 2.2
+- 2.3.0
+notifications:
+  email:
+    recipients:
+    - yrochnyak@gmail.com
+    on_success: change
+    on_failure: always
+script:
+- bundle exec rake default
+- gem build sensu-plugins-zookeeper.gemspec
+- gem install sensu-plugins-zookeeper-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: IFefS/eH2e2Qkjycz5MdeflS1AuhTHKbhUrd7qJ/3VEUdmaqF8ECmeHp08lwWI17zoD1sUes5Fi4//s4qOve4LS8TxD8m/t03gGA42d64i52/7Ow+2nHuTByx5ir7l4oEsJ8l9wzssARJrcLPpcL2lPvOLxeaiTZacuyxaR+kSspzz3NNsMjmbriF3BGtmKjPPrDoIzK7jC+lIj4lWbR6Cy1PuAR0Ozce9F/MXY0EimFaDBpi5p9TIDaHpjfEyGOocCV8pLXQdH71/pPdk+CJEN+lOMv0p0g3PZcBpqmDTsF3x/AV/zPcp63sugVgEk2+J80NivfXP7cZeJWpfQ4pP7UwaK0iZSNdcR4iDCd59ZRcHE+lGxJ49CoK116hw1GqwMOqUGhWoVg1TiKidUCpQIMovvF3MMSwt9XKZKddWwyhBOkEaKCN+Wvpuy7xZRd2viLTv39nAAfbeti2id+O+F0pZeLDyX5bVD3ktxKyprf4yFjqC94UTsWUJb366LyY3ijvkfkJNFLm0CS34NQ/ZO6/42r0TOxhb9Kh534w5brqkfqsKktDu3pj4tBpe1pneJkh2GuP1nd5ra9vEk0wCSINGDrpIR3xTQslAapBOK8tPuv5JBEa6HfLLIlnXAudx+PfpAp7gf1aW22A3Oe6YTWxFAQo98ouidTx46Wq4s=
+  gem: sensu-plugins-druid
+  on:
+    tags: true
+    repo: grem11n/sensu-plugins-druid
