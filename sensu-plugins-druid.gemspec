@@ -11,11 +11,12 @@ Gem::Specification.new do |s|
   s.description            = 'Sensu plugin to monitor Druid DB'
   s.authors                = ['Yurii Rochniak']
   s.email                  = 'yrochnyak@gmail.com'
+  s.homepage               = 'https://github.com/grem11n/sensu-plugins-druid'
+  s.license                = 'MIT'
   s.date                   = Date.today.to_s
   s.require_paths          = ['lib']
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
-  s.license                = 'MIT'
   s.metadata               = { 'maintainer'         => 'Yurii Rochniak',
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended' }
@@ -25,7 +26,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsDruid::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
-  s.add_runtime_dependency 'json',         '~> 1.8.6'
+  s.add_runtime_dependency 'json',         '~> 1.8.6', '>=1.8.6'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
