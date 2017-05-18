@@ -4,10 +4,21 @@
 ---
 ![Logo image](http://i.imgur.com/Ouz7wcO.png "Logo")
 
-## Unreleased:
-### List of the checks:
-* check-unavailable-segments.rb
+## Installation
+[Installation Guide](http://sensu-plugins.io/docs/installation_instructions.html)
 
+## Versions:
 
-## TODO:
-* check-historical-presence.rb
+### Unreleased:
+---
+
+### Version 0.1.0
+#### List of available checks:
+* check-unavailable-segments.rb: Checks if Coordinator has amount of segments to load lower than threshold
+* check-node-presence.rb: Checks node presence in Coordinator server list
+---
+
+### Version 0.0.1
+Proof of concept
+#### List of available checks:
+* check-unavailable-segments.rb: Checks if Coordinator has amount of segments to load lower than threshold

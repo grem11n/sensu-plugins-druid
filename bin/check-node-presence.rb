@@ -1,16 +1,17 @@
 #!/usr/bin/env ruby
 #  encoding: UTF-8
 #
-#  check-unavailable-segments
+#  check-node-presence
 #
 # DESCRIPTION:
-#   Check if Druid has unavailable segments.
+#   Check if Druid Historical node is present in Coordinator UI.
 #
-#   Unavailable segments could indicate an issue with any Historical node
-#   or Coordinator.
-#   This check requests "loadstatus" from Coordinator API.
-#   Druid responds with JSON, which contains information regarding segments
-#   to load for each datasource.
+#   This script checks Server status in Coordinator UI.
+#   IN general, there should be a list of Historical nodes for
+#   different tiers.
+#   This check requests "servers" from Coordinator API.
+#   Druid responds with JSON, which contains information about
+#   Historical servers status.
 #
 #   Druid documentation:
 #   http://druid.io/docs/latest/design/coordinator.html
@@ -24,9 +25,8 @@
 #
 # USAGE:
 #  Check if amount of segments to load is not exceeding the threshold.
-#  ./check-unavailable-segments.rb # Equivalent to examples below
-#  ./check-unavailable-segments.rb -s localhost -p 8081 -c 0
-#  ./check-unavailable-segments.rb --server localhost --port 8081 --critical 0
+#  ./check-node-presence.rb -s localhost -p 8081 -n historical-node01
+#  ./check-node-presence.rb --server localhost --port 8081 --node historical-node01
 #
 # LICENCE:
 #   Yurii Rochniak <yrochnyak@gmail.com>
@@ -51,16 +51,14 @@ class CheckUnavailableSegments < Sensu::Plugin::Check::CLI
          long: '--port PORT',
          default: '8081'
 
-  option :critical,
-         description: 'Maximum amount of segments to load for each datasource.',
-         short: '-c CRITICAL',
-         long: '--critical CRITICAL',
-         proc: proc(&:to_i),
-         default: 0
+  option :node,
+         description: 'Node pattern to search',
+         short: '-n NODE',
+         long: '--node NODE',
+         proc: proc(&:to_s)
 
   def run
-    api = '/druid/coordinator/v1/loadstatus?simple'
-    issues = {}
+    api = '/druid/coordinator/v1/servers?simple'
 
     begin
       url = "http://#{config[:server]}:#{config[:port]}#{api}"
@@ -71,11 +69,11 @@ class CheckUnavailableSegments < Sensu::Plugin::Check::CLI
     end
 
     parsed = JSON.parse(response)
-    parsed.each do |datasource, segments|
-      issues[datasource] = segments if segments.to_i > config[:critical]
+    parsed.each do |node|
+      if node['host'] =~ /#{config[:node]}/
+        ok %(Found #{node['type']} #{node['host']}, which is like #{config[:node]})
+      end
     end
-
-    ok %(Amount of segments to load  for each datasource is not greater than #{config[:critical]}) if issues.empty?
-    critical %(Druid has datasources with more than #{config[:critical]} segments to load: #{issues.to_json})
+    critical %("Node matching #{config[:node]} not found in Coordinator server list!")
   end
 end
