@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email                  = 'yrochnyak@gmail.com'
   s.homepage               = 'https://github.com/grem11n/sensu-plugins-druid'
   s.license                = 'MIT'
-  s.date                   = Time.zone.today
+  s.date                   = Date.today.to_s
   s.require_paths          = ['lib']
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
