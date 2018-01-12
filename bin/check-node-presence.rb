@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-#  encoding: UTF-8
-
 #  check-node-presence
 #
 # DESCRIPTION:
@@ -65,8 +63,9 @@ class CheckUnavailableSegments < Sensu::Plugin::Check::CLI
       url = "http://#{config[:server]}:#{config[:port]}#{api}"
       uri = URI(url)
       response = Net::HTTP.get(uri)
-    rescue
-      critical %(Cannot connect to the Coordinator host on http://#{config[:server]}:#{config[:port]}#{api})
+    rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
+           Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+      critical %(Cannot connect to the Coordinator host on http://#{config[:server]}:#{config[:port]}#{api}: #{e})
     end
 
     parsed = JSON.parse(response)
