@@ -1,5 +1,9 @@
 # Change Log
 
+0.1.1 - 2018-01-13
+---
+Minor dependency fixes
+
 0.1.0 - 2017-05-18
 ---
 ### Added

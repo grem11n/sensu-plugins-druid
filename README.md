@@ -12,6 +12,13 @@
 ### Unreleased:
 ---
 
+### Version 0.1.1
+Minor dependency fixes
+#### List of available checks:
+* check-unavailable-segments.rb: Checks if Coordinator has amount of segments to load lower than threshold
+* check-node-presence.rb: Checks node presence in Coordinator server list
+---
+
 ### Version 0.1.0
 #### List of available checks:
 * check-unavailable-segments.rb: Checks if Coordinator has amount of segments to load lower than threshold
