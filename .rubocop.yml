@@ -35,3 +35,8 @@ Metrics/ModuleLength:
 Metrics/BlockLength:
   Exclude:
     - "**/*.gemspec"
+
+AllCops:
+  Exclude:
+    - '**/Gemfile'
+    - '**/Rakefile'
