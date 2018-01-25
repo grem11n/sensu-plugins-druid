@@ -18,6 +18,7 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
+bundle install
 bundle exec rake default
 gem build sensu-plugins-druid.gemspec
 gem install sensu-plugins-druid-*.gem
