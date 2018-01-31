@@ -4,10 +4,10 @@ pipeline {
   stages {
     stage('Test') {
       echo 'Running Rake tests'
-      bundler install
-      bundle exec rake default
-      gem build sensu-plugins-druid.gemspec
-      gem install sensu-plugins-druid-*.gem
+      rvm "bundler install"
+      rvm "bundle exec rake default"
+      rvm "gem build sensu-plugins-druid.gemspec"
+      rvm "gem install sensu-plugins-druid-*.gem"
     }
   }
 }
