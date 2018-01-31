@@ -3,7 +3,7 @@ pipeline {
 
   stages {
     stage('Test') {
-      echo 'Running Rake tests"
+      echo 'Running Rake tests'
       bundler install
       bundle exec rake default
       gem build sensu-plugins-druid.gemspec
